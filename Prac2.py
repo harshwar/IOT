@@ -1,10 +1,15 @@
-from machine import Pin
-import tm1637
+import RPi.GPIO as GPIO
 import time
 
-tm = tm1637.TM1637(clk=Pin(0), dio=Pin(1))
+GPIO.setmode(GPIO.BOARD)
+
+LED = 11
+
+GPIO.setup(LED, GPIO.OUT)
 
 while True:
-    t = time.localtime()
-    tm.numbers(t[3], t[4])
+    GPIO.output(LED, 1)
+    time.sleep(1)
+
+    GPIO.output(LED, 0)
     time.sleep(1)
